@@ -14,8 +14,11 @@ public class CashwiseAuthorization {
         requestBody.setPassword(Config.getValue("password"));
         Response response = RestAssured.given().contentType(ContentType.JSON).
                 body(requestBody).post(Config.getValue("cashwiseApiUrl") + "/api/myaccount/auth/login");
-
         String token = response.jsonPath().getString("jwt_token");
         return token;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getToken());
     }
 }
