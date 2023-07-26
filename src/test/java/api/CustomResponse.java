@@ -13,5 +13,7 @@ public class CustomResponse {
     private int seller_id;
     private List<CustomResponse> responses;
     private String email;
-
+    private String seller_name;
+    private int balance;
+    private String id;
 }

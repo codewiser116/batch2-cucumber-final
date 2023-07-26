@@ -98,7 +98,38 @@ public class CashwiseSellersTests {
                     contentType(ContentType.JSON).body(requestBody).post(url);
 
             System.out.println(response.statusCode());
+        }
+    }
 
+
+    @Test
+    public void archiveHotmailSellers() throws JsonProcessingException {
+        String token = CashwiseAuthorization.getToken();
+        String url = Config.getValue("cashwiseApiUrl") + "/api/myaccount/sellers";
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("isArchived", false);
+        params.put("page", 1);
+        params.put("size", 60);
+
+        Response response = RestAssured.given().auth().oauth2(token).params(params).get(url);
+        ObjectMapper mapper = new ObjectMapper();
+        CustomResponse customResponse = mapper.readValue(response.asString(), CustomResponse.class);
+        System.out.println(customResponse.getResponses().size());
+
+        for (int i = 0; i < customResponse.getResponses().size(); i++){
+            String email = customResponse.getResponses().get(i).getEmail();
+            if (email.endsWith("hotmail.com")){
+                int id = customResponse.getResponses().get(i).getSeller_id();
+                String urlForArchive = Config.getValue("cashwiseApiUrl") + "/api/myaccount/sellers/archive/unarchive";
+                Map<String, Object> paramsArchive = new HashMap<>();
+                paramsArchive.put("sellersIdsForArchive", id);
+                paramsArchive.put("archive", true);
+
+                Response response1 = RestAssured.given().auth().oauth2(token).params(paramsArchive).post(urlForArchive);
+                response1.prettyPrint();
+
+            }
         }
     }
 
