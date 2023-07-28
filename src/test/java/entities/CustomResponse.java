@@ -16,4 +16,7 @@ public class CustomResponse {
     private String seller_name;
     private int balance;
     private String id;
+    private String responseBody;
+    private String company_name;
+    private String phone_number;
 }

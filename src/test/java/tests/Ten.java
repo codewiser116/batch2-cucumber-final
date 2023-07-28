@@ -9,7 +9,6 @@ public class Ten {
 
     private static List<String> db = new ArrayList<>();
 
-
     public static void getSellers(String token){
         if (token.equals("123456")){
             for (String s: db){
