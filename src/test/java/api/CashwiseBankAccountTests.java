@@ -2,14 +2,13 @@ package api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import entities.CustomResponse;
 import org.junit.Assert;
 import utilities.CashwiseAuthorization;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.Test;
 import utilities.Config;
-
-import java.util.List;
 
 public class CashwiseBankAccountTests {
 

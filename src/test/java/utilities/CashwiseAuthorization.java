@@ -1,10 +1,9 @@
 package utilities;
 
-import api.RequestBody;
+import entities.RequestBody;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import utilities.Config;
 
 public class CashwiseAuthorization {
 
